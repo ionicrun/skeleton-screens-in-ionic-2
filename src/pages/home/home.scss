@@ -1,3 +1,28 @@
 page-home {
 
+    // animation duration, kept in sync with the delay() used to emit each value
+    // within home.ts
+    
+    // should be small for real usage (e.g. 200ms)
+    $animationDuration : 1500ms;
+
+    // fade in animation (for new data that is added)
+    .fade-in {
+
+        opacity:0;  /* make things invisible upon start */
+        animation: fadeIn ease-in 1; /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+        animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+        animation-duration: $animationDuration;
+
+    }
+
+    @keyframes fadeIn { 
+        from { 
+            opacity: 0; 
+        }
+        to {
+            opacity: 1; 
+        }
+    }
+
 }

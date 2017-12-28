@@ -1,20 +1,7 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Skeleton Screens
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<div class="skeleton-cards"
+     [class.fade-out]="hasDataLoaded">
 
-<ion-content>
-
-  <!-- Skeleton DOM -->
-  <skeleton-cards [hasDataLoaded]="hasLoaded"></skeleton-cards>
-
-  <!-- Actual DOM -->
-  <ion-card *ngFor="let card of cards"
-            class="fade-in">
-
+  <ion-card *ngFor="let card of skeletonCards">
     <ion-item>
 
       <ion-avatar item-start>
@@ -27,7 +14,6 @@
       <p>
         {{card.dob}}
       </p>
-
     </ion-item>
 
     <img [src]="card.imgCover">
@@ -41,18 +27,16 @@
     <ion-row>
       <ion-col text-center>
         <button ion-button
-                color="dark"
                 clear
                 small
                 icon-start>
           <ion-icon name='thumbs-up'></ion-icon>
-          {{card.likes}}
+          <span class="skeleton-button-text">{{card.likes}}</span>
         </button>
       </ion-col>
 
       <ion-col text-center>
         <button ion-button
-                color="dark"
                 clear
                 small
                 icon-start>
@@ -68,6 +52,4 @@
     </ion-row>
 
   </ion-card>
-
-
-</ion-content>
+</div>

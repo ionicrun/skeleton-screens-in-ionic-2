@@ -1,0 +1,83 @@
+skeleton-cards {
+
+    // animation duration, kept in sync with the delay() used to emit each value
+    // within home.ts
+    
+    // should be small for real usage (e.g. 200ms)
+    $animationDuration : 1500ms;
+
+    // if changed, consider updating the default image directive its color as well
+    $skeletonColor : #ececec;
+
+    // the actual markup for the skeleton cards
+    .skeleton-cards {
+
+        // position the skeleton cards absolute,
+        // this way a nice crossfade is possible
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+
+        ion-label h2 {
+            background-color: $skeletonColor;
+            color: $skeletonColor;
+        }
+
+        ion-label p {
+            background-color: $skeletonColor;
+            color: $skeletonColor;
+            width: 50%;
+        }
+
+        ion-card-content p {
+            background-color: $skeletonColor;
+            color: $skeletonColor;
+            display: inline;
+        }
+
+        ion-icon span {
+            background-color: $skeletonColor;
+            color: $skeletonColor;
+        }
+
+        ion-note {
+            background-color: $skeletonColor;
+            color: $skeletonColor;             
+        }
+
+        [ion-button]  {
+            background-color: $skeletonColor;
+            color: $skeletonColor; 
+        }
+
+    }
+
+    // fade out animation for the skeletons 
+    .fade-out ion-card {
+
+        opacity: 1;
+        animation: fadeOut ease-in 1; 
+        animation-fill-mode: forwards;
+        animation-duration: $animationDuration;
+
+    } 
+
+    // fade out keyframes
+    @keyframes fadeOut { 
+        from { 
+            opacity: 1; 
+        } 
+        to { 
+            opacity: 0; 
+        } 
+    } 
+
+    // fade each card one after another. this is accomplished
+    // by adding a animation-delay
+    @for $i from 2 to 4 { 
+        .fade-out ion-card:nth-child(#{$i}) { 
+            animation-delay: ($i - 1) * $animationDuration; 
+        }
+    }
+
+}
